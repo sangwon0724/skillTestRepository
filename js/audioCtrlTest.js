@@ -10,6 +10,9 @@ var musicLength = [209, 85, 93];//음악 시간, 단위 : 초
 //setInterval()용 변수
 var setIntervalTest;
 
+//오디오 변수
+var audioTest = document.querySelector('.audioTest');
+
 indexResult.innerHTML = index;
 prev.addEventListener('click',previndex);
 next.addEventListener('click',nextindex);
@@ -58,18 +61,29 @@ var autoIndexplay = function(){
 
 //음악 변경
 var settingMusic = () => {
-    document.querySelector('.audioTest').src=music[index];
-    document.querySelector('.audioTest').load();
-    document.querySelector('.audioTest').play();
+    audioTest.src=music[index];
+    audioTest.load();
+
+
+    var promise = audioTest.play();
+    if (promise !== undefined)
+    {
+        promise.then(function (_){
+            // Autoplay started!
+            clearInterval(setIntervalTest);
+        }).catch(function (error) {
+            // Autoplay was prevented.
+            // Show a "Play" button so that user can start playback.
+        });
+    }
+
+    //audioTest.play();
 };
 
 //초기화
 var init = () => {
-    index++;
-    if(index===3){ index=0; }
-    indexResult.innerHTML=index;
-    
-    //settingMusic(); - 문제 발생
+    autoIndexplay();
+    setIntervalTest = setInterval(autoIndexplay, musicLength[index]*1000);
 };
 
 //초기화 진행

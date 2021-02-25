@@ -21,7 +21,7 @@
     <br><br>
 
     <!-- 로컬에서는 안 돌아가지만 서버상에서는 돌아감 -->
-    <iframe src="audio/silence.mp3" allow="autoplay" id="audioFrame" muted="muted"></iframe>
+    <iframe src="audio/silence.mp3" allow="autoplay 'src'" id="audioFrame"> </iframe>
     <audio class="audioTest" controls autoplay>
         <source class="audioSourceTest" src="audio/Fall.mp3" type="audio/mp3">
     </audio>
@@ -29,6 +29,6 @@
     <br>
 
     <span>음원 출처 : 문체부 공유 마당</span>
-    <script src="js/audioCtrlTest.js"></script>
+    <script src="js/audioCtrlTest.js" async></script>
 </body>
 </html>
