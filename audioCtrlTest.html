@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .indexCtrl {width : 600px; height: 100px; display: grid; grid-template-columns: repeat(3,200px); grid-template-rows: 1fr; border: 1px solid black;}
+        .indexCtrl>div {display: flex; justify-content: center; align-items: center;}
+        .indexCtrl>.prev, .indexCtrl>.next {cursor: pointer; background-color: lightgray;}
+    </style>
+</head>
+<body>
+    <div class="indexCtrl">
+        <div class="prev">◀</div>
+        <div class="index"></div>
+        <div class="next">▶</div>
+    </div>
+
+    <br><br>
+
+    <!-- 로컬에서는 안 돌아가지만 서버상에서는 돌아감 -->
+    <iframe src="silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
+    <audio class="audioTest" controls autoplay>
+        <source class="audioSourceTest" src="BOBBY-U_MAD.mp3" type="audio/mp3">
+    </audio>
+    <script src="audioCtrlTest.js"></script>
+</body>
+</html>
