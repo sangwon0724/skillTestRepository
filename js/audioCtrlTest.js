@@ -2,10 +2,10 @@ var indexCtrl = document.querySelector('.indexCtrl');
 var prev = indexCtrl.querySelector('.prev');
 var next = indexCtrl.querySelector('.next');
 var indexResult = indexCtrl.querySelector('.index');
-var index = 0;
+var index = 2;
 
-var music = ["audio/BOBBY_TENDE.mp3", "audio/BOBBY-RUNAWAY.mp3", "audio/BOBBY-U_MAD.mp3"];
-var musicLength = [216000, 223000, 170000];//n초 * 1000
+var music = ["./audio/Fall.mp3", "./audio/Fix_Car.mp3", "./audio/Potato_Chips.mp3"];
+var musicLength = [209, 85, 93];//음악 시간, 단위 : 초
 
 //setInterval()용 변수
 var setIntervalTest;
@@ -19,12 +19,13 @@ function previndex(){
     console.log('prevIndex');
     clearInterval(setIntervalTest);
     index--;
-    if(index===-1){ index=9; }
+    if(index===-1){ index=2; }
     indexResult.innerHTML=index;
-    //setIntervalTest = setInterval(autoIndexplay, musicLength[index]);
-    setIntervalTest = setInterval(autoIndexplay, 5000);
 
     settingMusic();
+
+    setIntervalTest = setInterval(autoIndexplay, musicLength[index]*1000);
+    //setIntervalTest = setInterval(autoIndexplay, musicLength[index]);
 }
 
 //슬라이드 이동 (다음)
@@ -32,12 +33,12 @@ function nextindex(){
     console.log('nextIndex');
     clearInterval(setIntervalTest);
     index++;
-    if(index===10){ index=0; }
+    if(index===3){ index=0; }
     indexResult.innerHTML=index;
 
     settingMusic();
 
-    setIntervalTest = setInterval(autoIndexplay, musicLength[index]);
+    setIntervalTest = setInterval(autoIndexplay, musicLength[index]*1000);
     //setIntervalTest = setInterval(autoIndexplay, 5000);
 }
 
@@ -46,12 +47,12 @@ var autoIndexplay = function(){
     console.log('autoIndexplay');
     clearInterval(setIntervalTest);
     index++;
-    if(index===10){ index=0; }
+    if(index===3){ index=0; }
     indexResult.innerHTML=index;
 
-    settingMusic();
-
-    setIntervalTest = setInterval(autoIndexplay, musicLength[index]);
+    //settingMusic();
+    setTimeout(settingMusic(), 50);
+    setIntervalTest = setInterval(autoIndexplay, musicLength[index]*1000);
     //setIntervalTest = setInterval(autoIndexplay, 5000);
 }
 
@@ -64,9 +65,11 @@ var settingMusic = () => {
 
 //초기화
 var init = () => {
-    //setTimeout(setIntervalTest = setInterval(autoIndexplay, musicLength[index]),500);
-    setIntervalTest = setInterval(autoIndexplay, musicLength[index]);
-    //setIntervalTest = setInterval(autoIndexplay, 5000);
+    index++;
+    if(index===3){ index=0; }
+    indexResult.innerHTML=index;
+    
+    //settingMusic(); - 문제 발생
 };
 
 //초기화 진행

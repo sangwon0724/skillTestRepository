@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>오디오 컨트롤 테스트</title>
     <style>
         .indexCtrl {width : 600px; height: 100px; display: grid; grid-template-columns: repeat(3,200px); grid-template-rows: 1fr; border: 1px solid black;}
         .indexCtrl>div {display: flex; justify-content: center; align-items: center;}
@@ -21,10 +21,14 @@
     <br><br>
 
     <!-- 로컬에서는 안 돌아가지만 서버상에서는 돌아감 -->
-    <iframe src="audio/silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
+    <iframe src="audio/silence.mp3" allow="autoplay" id="audioFrame" muted="muted"></iframe>
     <audio class="audioTest" controls autoplay>
-        <source class="audioSourceTest" src="audio/BOBBY-U_MAD.mp3" type="audio/mp3">
+        <source class="audioSourceTest" src="audio/Fall.mp3" type="audio/mp3">
     </audio>
+
+    <br>
+
+    <span>음원 출처 : 문체부 공유 마당</span>
     <script src="js/audioCtrlTest.js"></script>
 </body>
 </html>
