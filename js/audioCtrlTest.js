@@ -28,7 +28,6 @@ function previndex(){
     settingMusic();
 
     setIntervalTest = setInterval(autoIndexplay, musicLength[index]*1000);
-    //setIntervalTest = setInterval(autoIndexplay, musicLength[index]);
 }
 
 //슬라이드 이동 (다음)
@@ -42,7 +41,6 @@ function nextindex(){
     settingMusic();
 
     setIntervalTest = setInterval(autoIndexplay, musicLength[index]*1000);
-    //setIntervalTest = setInterval(autoIndexplay, 5000);
 }
 
 //슬라이드 자동 재생 - setInterval용
@@ -53,31 +51,16 @@ var autoIndexplay = function(){
     if(index===3){ index=0; }
     indexResult.innerHTML=index;
 
-    //settingMusic();
-    setTimeout(settingMusic(), 50);
+    settingMusic();
+
     setIntervalTest = setInterval(autoIndexplay, musicLength[index]*1000);
-    //setIntervalTest = setInterval(autoIndexplay, 5000);
 }
 
 //음악 변경
 var settingMusic = () => {
     audioTest.src=music[index];
     audioTest.load();
-
-
-    var promise = audioTest.play();
-    if (promise !== undefined)
-    {
-        promise.then(function (_){
-            // Autoplay started!
-            clearInterval(setIntervalTest);
-        }).catch(function (error) {
-            // Autoplay was prevented.
-            // Show a "Play" button so that user can start playback.
-        });
-    }
-
-    //audioTest.play();
+    audioTest.play();
 };
 
 //초기화
