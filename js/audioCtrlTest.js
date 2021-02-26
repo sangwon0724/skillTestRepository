@@ -2,7 +2,7 @@ var indexCtrl = document.querySelector('.indexCtrl');
 var prev = indexCtrl.querySelector('.prev');
 var next = indexCtrl.querySelector('.next');
 var indexResult = indexCtrl.querySelector('.index');
-var index = 2;
+var index = 0;
 
 var music = ["./audio/Fall.mp3", "./audio/Fix_Car.mp3", "./audio/Potato_Chips.mp3"];
 var musicLength = [209, 85, 93];//음악 시간, 단위 : 초
@@ -10,6 +10,8 @@ var musicLength = [209, 85, 93];//음악 시간, 단위 : 초
 //setInterval()용 변수
 var setIntervalTest;
 
+//iframe
+var audioFrame = document.getElementById('audioFrame');
 //오디오 변수
 var audioTest = document.querySelector('.audioTest');
 
@@ -58,16 +60,51 @@ var autoIndexplay = function(){
 
 //음악 변경
 var settingMusic = () => {
+    console.log('settingMusic');
     audioTest.src=music[index];
     audioTest.load();
-    audioTest.play();
+    audioTest.play(); 
 };
+
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }    
+}
 
 //초기화
 var init = () => {
-    autoIndexplay();
+    /*audioFrame.onended = function(){ 
+        //audioSourceTest.play(); 
+        console.log('audioTest.onended');
+        var agent = navigator.userAgent.toLowerCase(); 
+
+        if (agent.indexOf("chrome") != -1) { //
+            audioSourceTest.outerHTML = ""; 
+            var weaList = '<iframe style="width:1px; height:1px;" src="audio/silence.mp3" allow="autoplay">';
+            $('body').prepend(weaList);
+        } else { 
+            audioSourceTest.play(); 
+        }
+    };*/
+
+    mySound = new sound(music[index]);
     setIntervalTest = setInterval(autoIndexplay, musicLength[index]*1000);
 };
+
+function test(){
+    //audioTest.play();
+    mySound.play();
+}
 
 //초기화 진행
 init();
