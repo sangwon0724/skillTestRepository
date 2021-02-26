@@ -83,22 +83,9 @@ function sound(src) {
 
 //초기화
 var init = () => {
-    /*audioFrame.onended = function(){ 
-        //audioSourceTest.play(); 
-        console.log('audioTest.onended');
-        var agent = navigator.userAgent.toLowerCase(); 
-
-        if (agent.indexOf("chrome") != -1) { //
-            audioSourceTest.outerHTML = ""; 
-            var weaList = '<iframe style="width:1px; height:1px;" src="audio/silence.mp3" allow="autoplay">';
-            $('body').prepend(weaList);
-        } else { 
-            audioSourceTest.play(); 
-        }
-    };*/
-
     mySound = new sound(music[index]);
     setIntervalTest = setInterval(autoIndexplay, musicLength[index]*1000);
+    mySound.play();
 };
 
 function test(){
